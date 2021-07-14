@@ -23,27 +23,19 @@ from imagenet_vid_eval import vid_eval
 from ds_utils import unique_boxes, filter_small_boxes
 
 
-class ImageNetVID(IMDB):
+class TwitchVID(IMDB):
     def __init__(self, image_set, root_path, dataset_path, result_path=None):
         """
         fill basic information to initialize imdb
         """
         det_vid = image_set.split('_')[0]
-        super(ImageNetVID, self).__init__('ImageNetVID', image_set, root_path, dataset_path, result_path)  # set self.name
+        super(TwitchVID, self).__init__('TwitchVID', image_set, root_path, dataset_path, result_path)  # set self.name
 
         self.det_vid = det_vid
         self.root_path = root_path
         self.data_path = dataset_path
 
-        self.classes = ['__background__',  # always index 0
-                        'airplane', 'antelope', 'bear', 'bicycle',
-                        'bird', 'bus', 'car', 'cattle',
-                        'dog', 'domestic_cat', 'elephant', 'fox',
-                        'giant_panda', 'hamster', 'horse', 'lion',
-                        'lizard', 'monkey', 'motorcycle', 'rabbit',
-                        'red_panda', 'sheep', 'snake', 'squirrel',
-                        'tiger', 'train', 'turtle', 'watercraft',
-                        'whale', 'zebra']
+        self.classes = ['armor', 'car', 'base', 'watcher']
         self.classes_map = ['__background__',  # always index 0
                         'n02691156', 'n02419796', 'n02131653', 'n02834778',
                         'n01503061', 'n02924116', 'n02958343', 'n02402425',
@@ -115,7 +107,7 @@ class ImageNetVID(IMDB):
     def load_vid_annotation(self, iindex):
         """
         for a given index, load image and bounding boxes info from XML file
-        :param index: index of a specific image
+        :param iindex: index of a specific image
         :return: record['boxes', 'gt_classes', 'gt_overlaps', 'flipped']
         """
         index = self.image_set_index[iindex]
@@ -149,7 +141,7 @@ class ImageNetVID(IMDB):
         overlaps = np.zeros((num_objs, self.num_classes), dtype=np.float32)
         valid_objs = np.zeros((num_objs), dtype=np.bool)
 
-        class_to_index = dict(zip(self.classes_map, range(self.num_classes)))
+        class_to_index = dict(zip(self.classes, range(self.num_classes)))
         # Load object bounding boxes into a data frame.
         for ix, obj in enumerate(objs):
             bbox = obj.find('bndbox')

@@ -1,6 +1,6 @@
 ---
 MXNET_VERSION: "mxnet"
-output_path: "./output/dff_rfcn/imagenet_vid"
+output_path: "./output/dff_rfcn/twitch_vid"
 gpus: '0'
 CLASS_AGNOSTIC: true
 SCALES:
