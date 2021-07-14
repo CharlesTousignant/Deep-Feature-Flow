@@ -49,8 +49,8 @@ network:
   NORMALIZE_RPN: TRUE
   NUM_ANCHORS: 9
 dataset:
-  NUM_CLASSES: 31
-  dataset: Twitch_dataset
+  NUM_CLASSES: 3
+  dataset: TwitchVID
   dataset_path: "./data/Twitch_dataset"
   image_set: Twitch_vid
   root_path: "./data"
