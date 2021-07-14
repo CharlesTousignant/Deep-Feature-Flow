@@ -1,2 +1,2 @@
 from imdb import IMDB
-from imagenet_vid import ImageNetVID
+from imagenet_vid import TwitchVID
