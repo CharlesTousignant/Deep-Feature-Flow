@@ -125,6 +125,7 @@ class TwitchVID(IMDB):
             filename = os.path.join(self.data_path, 'Annotations', 'DET', index + '.xml')
         else:
             filename = os.path.join(self.data_path, 'Annotations', 'VID', index + '.xml')
+            print(index)
 
         tree = ET.parse(filename)
         size = tree.find('size')
