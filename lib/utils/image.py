@@ -65,7 +65,7 @@ def get_pair_image(roidb, config):
         roi_rec = roidb[i]
 
         eq_flag = 0 # 0 for unequal, 1 for equal
-        print(roi_rec['image'])
+
         assert os.path.exists(roi_rec['image']), '%s does not exist'.format(roi_rec['image'])
         im = cv2.imread(roi_rec['image'], cv2.IMREAD_COLOR|cv2.IMREAD_IGNORE_ORIENTATION)
 
