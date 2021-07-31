@@ -51,10 +51,10 @@ network:
 dataset:
   NUM_CLASSES: 6
   dataset: TwitchVID
-  dataset_path: "./data/Twitch_dataset"
+  dataset_path: "./data"
   image_set: Twitch_vid
   root_path: "./data"
-  test_image_set: Twitch_vid_train
+  test_image_set: Twitch_vid_test
   proposal: rpn
 TRAIN:
   lr: 0.00025

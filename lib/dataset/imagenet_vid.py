@@ -35,9 +35,9 @@ class TwitchVID(IMDB):
         self.root_path = root_path
         self.data_path = dataset_path
 
-        self.classes = ['__background__', 'armor', 'car', 'base', 'watcher', 'rune-blue']
+        self.classes = ['__background__', 'armor', 'car', 'base', 'watcher', 'rune-blue', 'rune-red']
         self.classes_map = ['__background__',  # always index 0
-                            'armor', 'car', 'base', 'watcher', 'rune-blue']
+                            'armor', 'car', 'base', 'watcher', 'rune-blue', 'rune-red']
 
         self.num_classes = len(self.classes)
         self.load_image_set_index()
