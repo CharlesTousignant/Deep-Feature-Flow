@@ -4,7 +4,7 @@ from os import makedirs, path
 import shutil
 import pathlib
 
-pathToDataset = "../../../Twitch_dataset"
+pathToDataset = "../../Twitch_dataset"
 indexNumIm = -5
 numNumbers = 4
 periodInFrames = 30  # 2fps
@@ -48,16 +48,22 @@ for folder in folders[:-1]:
         newImName = "%06d" % (indexIm * periodInFrames,) + ".JPEG"
         os.rename(path.join(currVidData, image), path.join(currVidData, newImName))
 
-        annotationName = image[:indexNumIm + 1] + ".xml"
-        shutil.copyfile(path.join(pathToDataset, folder, "image_annotation", annotationName),
-                        path.join(currVidAnnotations, annotationName))
-        newAnnotationName = "%06d" % (indexIm * periodInFrames,) + ".xml"
-        os.rename(path.join(currVidAnnotations, annotationName), path.join(currVidAnnotations, newAnnotationName))
-
-        if (numVids < 2000):
+        if (numVids < 200):
             f.write("%04d" % (numVids - 1,) + " 1 " + str(indexIm * periodInFrames) + " " + str(165) + '\n')
-        else:
-            t.write("%04d" % (numVids - 1,) + " 1 " + str(indexIm * periodInFrames) + " " + str(165) + '\n')
+            annotationName = image[:indexNumIm + 1] + ".xml"
+            shutil.copyfile(path.join(pathToDataset, folder, "image_annotation", annotationName),
+                            path.join(currVidAnnotations, annotationName))
+            newAnnotationName = "%06d" % (indexIm * periodInFrames,) + ".xml"
+            os.rename(path.join(currVidAnnotations, annotationName), path.join(currVidAnnotations, newAnnotationName))
+
+        elif (numVids < 300):
+            t.write("%04d" % (numVids - 1,) + " 1 " + '\n')
+            annotationName = image[:indexNumIm + 1] + ".xml"
+            shutil.copyfile(path.join(pathToDataset, folder, "image_annotation", annotationName),
+                            path.join(currVidAnnotations, annotationName))
+            newAnnotationName = "%04d" % (numVids,) + ".xml"
+            pathsToAnnotation = currVidAnnotations.split()
+            os.rename(path.join(currVidAnnotations, annotationName), path.join(pathsToAnnotation[0], pathsToAnnotation[1], newAnnotationName))
 
         indexIm += 1
 
