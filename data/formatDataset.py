@@ -48,7 +48,7 @@ for folder in folders[:-1]:
         newImName = "%06d" % (indexIm * periodInFrames,) + ".JPEG"
         os.rename(path.join(currVidData, image), path.join(currVidData, newImName))
 
-        if (numVids < 200):
+        if (numVids < 1500):
             f.write("%04d" % (numVids - 1,) + " 1 " + str(indexIm * periodInFrames) + " " + str(165) + '\n')
             annotationName = image[:indexNumIm + 1] + ".xml"
             shutil.copyfile(path.join(pathToDataset, folder, "image_annotation", annotationName),
@@ -56,7 +56,7 @@ for folder in folders[:-1]:
             newAnnotationName = "%06d" % (indexIm * periodInFrames,) + ".xml"
             os.rename(path.join(currVidAnnotations, annotationName), path.join(currVidAnnotations, newAnnotationName))
 
-        elif (numVids < 300):
+        else:
             t.write("%04d" % (numVids - 1,) + " 1 " + '\n')
             annotationName = image[:indexNumIm + 1] + ".xml"
             shutil.copyfile(path.join(pathToDataset, folder, "image_annotation", annotationName),
